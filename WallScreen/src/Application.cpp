@@ -1,17 +1,26 @@
 #include <windows.h>
 #include <iostream>
-#include <tchar.h>
+#include <thread>
+
 #include "WallpaperHandle.h"
+#include "GdiplusManager.h"
+#include "GifDrawer.h"
 
 int main()
 {
 	WallpaperHandle wallpaperH;
 	HDC wallpaperHDC = wallpaperH.GetDeviceContext();
 
-	HDC hdc = CreateCompatibleDC(NULL);
-	HBITMAP cross = (HBITMAP)LoadImage(NULL, _T("res/images/cross.bmp"), IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
-	SelectObject(hdc, cross);
-	BitBlt(wallpaperHDC, 100, 0, 256, 256, hdc, 0, 0, SRCCOPY);
+	ULONG_PTR gdiplusToken = GdiplusManager::StartGdiPLus();
+	{
+		GifDrawer gifDrawer(L"res/images/sunny.gif", wallpaperHDC, 0, 0, 1366, 768);
+		std::thread drawerThread([&] { gifDrawer.Draw(); });
+
+		std::cin.get();
+		gifDrawer.Shutdown();
+		drawerThread.join();
+	}
+	GdiplusManager::ShutdownGdiPlus(gdiplusToken);
 
 	std::cin.get();
 

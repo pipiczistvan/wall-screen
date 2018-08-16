@@ -21,6 +21,9 @@
     <ClCompile Include="src\WallpaperHandle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\GifDrawer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\WallScreenException.h">
@@ -29,5 +32,28 @@
     <ClInclude Include="src\WallpaperHandle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\GifDrawer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GdiplusManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\images\countdown.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\images\cross.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\images\earth.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\images\monkey.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\images\sunny.gif">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
