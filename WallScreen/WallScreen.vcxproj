@@ -78,7 +78,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>user32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>user32.lib;gdiplus.lib;advapi32.lib;gdi32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -89,7 +89,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>user32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>user32.lib;gdiplus.lib;advapi32.lib;gdi32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -104,7 +104,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>user32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>user32.lib;gdiplus.lib;advapi32.lib;gdi32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -119,19 +119,21 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>user32.lib;gdiplus.lib</AdditionalDependencies>
+      <AdditionalDependencies>user32.lib;gdiplus.lib;advapi32.lib;gdi32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\GifDrawer.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\WallpaperHandle.cpp" />
+    <ClCompile Include="src\WallpaperRestorer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GdiplusManager.h" />
     <ClInclude Include="src\GifDrawer.h" />
     <ClInclude Include="src\WallpaperHandle.h" />
     <ClInclude Include="src\WallScreenException.h" />
+    <ClInclude Include="src\WallpaperRestorer.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\images\countdown.gif" />

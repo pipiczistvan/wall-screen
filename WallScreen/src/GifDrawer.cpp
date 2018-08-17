@@ -20,23 +20,21 @@ void RetrieveFrameDelayData(Gdiplus::Image* image, unsigned char*& frameDelayDat
 	frameDelays = reinterpret_cast<UINT*>(frameDelayItems->value);
 }
 
-GifDrawer::GifDrawer(const WCHAR* file, HDC& graphicsDevice, INT x, INT y, INT width, INT height)
+GifDrawer::GifDrawer(const WCHAR* file)
 	: m_CurrentFrameIndex(0), m_Updating(true)
 {
 	m_Image = new Gdiplus::Image(file);
-	m_Graphics = new Gdiplus::Graphics(graphicsDevice);
-	m_Rectangle = new Gdiplus::Rect(x, y, width, height);
 
 	m_FrameCount = RetrieveFrameCount(m_Image);
 	RetrieveFrameDelayData(m_Image, m_FrameDelayData, m_FrameDelays);
 }
 
-void GifDrawer::Draw()
+void GifDrawer::Draw(Gdiplus::Graphics& graphics, Gdiplus::Rect& rectangle)
 {
 	while (m_Updating)
 	{
 		m_Image->SelectActiveFrame(&Gdiplus::FrameDimensionTime, m_CurrentFrameIndex);
-		m_Graphics->DrawImage(m_Image, *m_Rectangle);
+		graphics.DrawImage(m_Image, rectangle);
 		
 		std::this_thread::sleep_for(std::chrono::milliseconds(m_FrameDelays[m_CurrentFrameIndex] * 10));
 		if (++m_CurrentFrameIndex >= m_FrameCount) {
@@ -53,7 +51,5 @@ void GifDrawer::Shutdown()
 GifDrawer::~GifDrawer()
 {
 	delete m_Image;
-	delete m_Graphics;
-	delete m_Rectangle;
 	delete[] m_FrameDelayData;
 }
