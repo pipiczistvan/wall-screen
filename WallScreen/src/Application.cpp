@@ -7,9 +7,11 @@
 #include "GdiplusManager.h"
 #include "GifDrawer.h"
 #include "WallpaperRestorer.h"
+#include "Configuration.h"
 
 int main()
 {
+	Configuration configuration(L"res/config/config.ini");
 	WallpaperHandle wallpaperH;
 	HDC wallpaperHDC = wallpaperH.GetDeviceContext();
 	HWND wallpaperHWND = wallpaperH.GetWindow();
@@ -17,10 +19,10 @@ int main()
 	ULONG_PTR gdiplusToken = GdiplusManager::StartGdiPLus();
 	{
 		Gdiplus::Graphics graphics(wallpaperHDC);
-		Gdiplus::Rect rectangle(100, 100, 1366, 768); 
+		Gdiplus::Rect rectangle(configuration.GetX(), configuration.GetY(), configuration.GetWidth(), configuration.GetHeight()); 
 		WallpaperRestorer wallpaperRestorer(wallpaperH, rectangle);
 		
-		GifDrawer gifDrawer(L"res/images/sunny.gif");
+		GifDrawer gifDrawer(configuration.GetGifImage());
 		std::thread drawerThread([&] {
 			gifDrawer.Draw(graphics, rectangle);
 		});

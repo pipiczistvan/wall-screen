@@ -123,12 +123,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Configuration.cpp" />
     <ClCompile Include="src\GifDrawer.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\WallpaperHandle.cpp" />
     <ClCompile Include="src\WallpaperRestorer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Configuration.h" />
     <ClInclude Include="src\GdiplusManager.h" />
     <ClInclude Include="src\GifDrawer.h" />
     <ClInclude Include="src\WallpaperHandle.h" />
@@ -141,6 +143,9 @@
     <Image Include="res\images\earth.gif" />
     <Image Include="res\images\monkey.gif" />
     <Image Include="res\images\sunny.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\config\config.ini" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
